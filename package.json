@@ -1,0 +1,30 @@
+{
+  "name": "starter-project-js-scss",
+  "version": "1.0.0",
+  "description": "es6/scss starter template",
+  "main": "index.js",
+  "author": "gOmA-sTuDiO",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^10.4.4",
+    "browser-sync": "^2.27.9",
+    "node-sass": "^7.0.1",
+    "onchange": "^7.1.0",
+    "postcss": "^8.1.0",
+    "uglify-js": "^3.15.3",
+    "yarn-run-all": "^3.1.1"
+  },
+  "scripts": {
+    "scss": "node-sass --output-style compressed -o dist/css src/scss",
+    "watch:css": "onchange 'src/scss' -- yarn run scss",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "uglify": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o dist/js/app.js && uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
+    "watch:js": "onchange 'src/js/*.js' -- yarn run uglify",
+    "serve": "browser-sync start --server --files 'dist/css/*.css, **/*.html, dist/js/*.js'",
+    "start": "run-p serve watch:css watch:js",
+    "build:css": "yarn run scss && yarn run autoprefixer",
+    "build:js": "yarn run uglify",
+    "build": "run-p serve build:css build:js"
+
+  }
+}

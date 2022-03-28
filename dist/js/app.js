@@ -1,0 +1,1 @@
+console.log("Starting Js project -- app.js");console.log("Starting Js project - main.js");
